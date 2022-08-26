@@ -1,0 +1,47 @@
+{% extends 'layouts.html '%}
+
+{% block title %}
+<title>Products</title>
+{% endblock %}
+
+{% block main_division %}
+<div class="container-fluid mt-4">
+    {% for msg in messages %}
+    {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="alert alert-success">
+        {{msg}}
+    </div>
+    {% endif %}
+    {% endfor %}
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Product Image</th>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Product Price</th>
+                <th>Product Quantity</th>
+                <th>Product Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in product %}
+            <tr>
+                <td><img src="/{{post.product_image_url}}" alt="{{post.product_name}}" width="150"></td>
+                <td>{{post.product_name}}</td>
+                <td>{{post.category}}</td>
+                <td>{{post.product_price}}</td>
+                <td>{{post.stock}}</td>
+                <td>{{post.product_description}}</td>
+                <td class="d-flex">
+                    <a href="/admin/update_product/{{post.id}}" class="btn btn-primary text-white"><i class='bx bx-edit-alt' ></i></a>
+                    &nbsp;&nbsp;
+                    <a href="/admin/delete_product/{{post.id}}" class="btn btn-danger text-white" onclick="return confirm('Are you sure want to delete this product ?')"><i class='bx bxs-trash-alt' ></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

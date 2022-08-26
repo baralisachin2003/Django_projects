@@ -1,0 +1,15 @@
+*{
+    box-sizing: border-box;
+}
+
+.product-card{
+    padding:20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    /* filter:grayscale(1.1); */
+    transition: all 1s;
+}
+
+.product-card:hover{
+    /* filter: none; */
+    transform: translateY(-5px);
+}

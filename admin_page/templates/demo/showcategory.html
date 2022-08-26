@@ -1,0 +1,45 @@
+{% extends 'layouts.html' %}
+
+{% block title %}
+<title>Category</title>
+{% endblock %}
+
+{% block main_division %}
+
+<div class="container-fluid mt-4">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            {% for msg in messages %}
+            {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="alert alert-success">
+                {{msg}}
+            </div>
+            {% endif %}
+            {% endfor %}
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Category Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in category %}
+                    <tr>
+                        <td>{{post.category_name}}</td>
+                        <td class="d-flex">
+                            <a href="/admin/update_category/{{post.id}}" class="btn btn-primary"><i
+                                    class='bx bx-edit-alt'></i></a>
+                            &nbsp;&nbsp;
+                            <a href="/admin/delete_category/{{post.id}}" class="btn btn-danger"
+                                onclick="return confirm('Are you sure want to delete this category?')"><i
+                                    class='bx bxs-trash-alt'></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

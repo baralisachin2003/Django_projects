@@ -1,0 +1,41 @@
+{% extends 'layouts.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+<title>User registration</title>
+{% endblock %}
+
+{% block main_division %}
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center text-muted mb-3">
+                Register Form
+            </h2>
+            {% for msg in messages %}
+            {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
+            <div class="alert alert-success">
+                {{msg}}
+            </div>
+            {% endif %}
+            {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR%}
+            <div class="alert alert-danger">
+                {{msg}}
+            </div>
+            {% endif %}
+            {% endfor %}
+            <form action="" method="post" class="shadow-lg p-3 mb-3">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div class="mt-3 mb-3">
+                    <input type="submit" value="Register" class="btn btn-primary">
+                </div>
+            </form>
+            Already have an account?&nbsp;<a href="/account/login" class="btn btn-outline-primary btn-sm">Login</a>
+                <br>
+            <a href="/">Go to homepage</a>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
